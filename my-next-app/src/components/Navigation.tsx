@@ -1,0 +1,38 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Phone, LogIn, LogOut } from "lucide-react";
+import { useAuth } from "@/hooks/use-auth";
+
+export default function Navigation() {
+  const handleWhatsAppClick = () => {
+    if (typeof window !== "undefined") {
+      window.open("https://wa.me/+919657419302", "_blank");
+    }
+  };
+
+  return (
+    <nav className="bg-white border-b border-gray-200 fixed w-full z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <Link href="/" className="text-2xl font-playfair font-bold text-primary">
+              Patil & Sons
+            </Link>
+          </div>
+          <div className="flex items-center space-x-6">
+            <Link href="/" className="text-gray-700 hover:text-primary">
+              Home
+            </Link>
+            <Link href="/properties" className="text-gray-700 hover:text-primary">
+              Properties
+            </Link>
+            <Button variant="default" size="sm" onClick={handleWhatsAppClick} className="cursor-pointer">
+              <Phone className="mr-2 h-4 w-4" />
+              Contact Us
+            </Button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
