@@ -1,5 +1,9 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
+
+const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.default), { ssr: false });
+
 import { Phone, LogIn, LogOut } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 

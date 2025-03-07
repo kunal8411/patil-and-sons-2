@@ -1,7 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-// import PropertyCard from "@/components/PropertyCard";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
+
+const Button = dynamic(
+  () => import("@/components/ui/button").then((mod) => mod.default),
+  { ssr: false }
+);
+
 import { Plus } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
 import { useEffect, useState } from "react";
@@ -11,18 +15,27 @@ import axios from "axios";
 import type { Property } from "@/types/property";
 
 export default function Properties() {
-  const data= useAuth();
+  const data = useAuth();
   const [showAddForm, setShowAddForm] = useState(false);
   const [allproperties, setAllProperties] = useState<Property[]>([]);
-
+  const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://patil-and-sons-backend.onrender.com/properties"
+        // const response1 = await axios({
+        //   "GET",
+        //   url,
+        //   data: body,
+        //   params
+        // });
+
+        const response: any = await axios.get(
+          // "https://patil-and-sons-backend.onrender.com/properties"
+
+          "/api/properties"
         );
-        console.log("datadatadatadata", response.data);
-        setAllProperties(response.data.data);
+        console.log("datadatadatadata", response.data.allProperties);
+        setAllProperties(response.data.allProperties);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -42,7 +55,14 @@ export default function Properties() {
   //     </div>
   //   );
   // }
-  console.log("allproperties",allproperties)
+  console.log("allproperties", allproperties);
+  if (loading) {
+    return (
+      <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-white bg-opacity-75 z-50">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500 border-solid"></div>
+      </div>
+    );
+  }
   return (
     <main className="pt-24">
       <div className="container mx-auto px-4">

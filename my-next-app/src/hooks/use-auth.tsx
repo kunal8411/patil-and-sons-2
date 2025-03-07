@@ -3,7 +3,7 @@ import {
   useQuery,
   useMutation,
 } from "@tanstack/react-query";
-import { insertUserSchema, User as SelectUser, InsertUser } from "@shared/schema";
+import { insertUserSchema, User as SelectUser, InsertUser } from "@/shared/schema";
 import { getQueryFn, apiRequest, queryClient } from "../lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 
@@ -89,13 +89,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 }
 
 export function useAuth() {
-  // const context = useContext(AuthContext);
-  // if (!context) {
-  //   throw new Error("useAuth must be used within an AuthProvider");
-  // }
-  // return context;
-  let localStorageData= localStorage.getItem('isLoggedIn');
-  if(localStorageData && localStorageData==='true'){
-    return {isAdmin:true}
+  if (typeof window !== "undefined") {
+    const localStorageData = localStorage.getItem("isLoggedIn");
+    if (localStorageData === "true") {
+      return { isAdmin: true };
+    }
   }
+  return { isAdmin: false };
 }
+

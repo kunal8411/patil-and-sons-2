@@ -2,7 +2,12 @@ import * as React from "react"
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog"
 
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+// import { buttonVariants } from "@/components/ui/button"
+import dynamic from "next/dynamic";
+import { buttonVariants } from "@/components/ui/button";
+
+const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.default), { ssr: false });
+
 
 const AlertDialog = AlertDialogPrimitive.Root
 

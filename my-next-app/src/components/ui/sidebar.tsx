@@ -5,7 +5,12 @@ import { PanelLeft } from "lucide-react"
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
+
+import dynamic from "next/dynamic";
+
+const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.default), { ssr: false });
+
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { Sheet, SheetContent } from "@/components/ui/sheet"

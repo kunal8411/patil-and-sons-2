@@ -1,4 +1,8 @@
-import { Button } from "@/components/ui/button";
+// import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
+
+const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.default), { ssr: false });
+
 import Link from "next/link";
 
 export default function Hero() {

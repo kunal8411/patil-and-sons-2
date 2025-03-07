@@ -1,10 +1,10 @@
 import { useState, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertPropertySchema } from "@shared/schema";
-import type { InsertProperty } from "@shared/schema";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import dynamic from "next/dynamic";
+const Button = dynamic(() => import("@/components/ui/button"), { ssr: false });
+// import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -14,6 +14,7 @@ import { apiRequest, queryClient } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
+import { InsertProperty, insertPropertySchema } from "@/shared/schema";
 
 interface AddPropertyFormProps {
   onClose: () => void;
