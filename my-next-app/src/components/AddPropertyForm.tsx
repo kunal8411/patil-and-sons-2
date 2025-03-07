@@ -125,7 +125,7 @@ export default function AddPropertyForm({ onClose }: AddPropertyFormProps) {
       const { title, description, area, price, type, location } = data;
       try {
         const data = await axios.post(
-          "https://patil-and-sons-backend.onrender.com/properties",
+        "/api/properties",
           {
             title,
             description,
