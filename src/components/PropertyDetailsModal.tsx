@@ -6,16 +6,26 @@ import {
 } from "@/components/ui/dialog";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from 'next/image';
 
+interface Property {
+  title: string;
+  location: string;
+  area: string;
+  description: string;
+  price: string;
+  type: string;
+  images: { url: string }[];
+  videos: { url: string }[];
+}
 interface PropertyDetailsModalProps {
   isOpen: boolean;
   onClose: () => void;
-  property: any;
+  property: Property;
 }
 
 export function PropertyDetailsModal({ isOpen, onClose, property }: PropertyDetailsModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   
   const allMedia = [...property.images, ...property.videos];
   
@@ -43,10 +53,13 @@ export function PropertyDetailsModal({ isOpen, onClose, property }: PropertyDeta
           {allMedia.length > 0 && (
             <>
               {currentImageIndex < property.images.length ? (
-                <img
-                  src={allMedia[currentImageIndex].url}
+                <Image
+                  src={property.images[currentImageIndex].url}
                   alt={property.title}
-                  className="w-full h-full object-cover"
+                  width={600}
+                  height={400}
+                  className="w-full h-64 object-cover rounded-t-lg"
+                  style={{ objectFit: 'cover' }}
                 />
               ) : (
                 <video
@@ -83,16 +96,18 @@ export function PropertyDetailsModal({ isOpen, onClose, property }: PropertyDeta
         <div className="mt-4 grid grid-cols-4 md:grid-cols-6 gap-2 max-h-24 overflow-x-auto">
           {allMedia.map((media, index) => (
             <button
-              key={media.publicId}
+              key={index}
               onClick={() => setCurrentImageIndex(index)}
               className={`relative aspect-square rounded-lg overflow-hidden ${
                 currentImageIndex === index ? 'ring-2 ring-primary' : ''
               }`}
             >
               {index < property.images.length ? (
-                <img
-                  src={media.url}
+                <Image
+                  src={property.images[index].url}
                   alt={`Thumbnail ${index}`}
+                  width={60}
+                  height={60}
                   className="w-full h-full object-cover"
                 />
               ) : (

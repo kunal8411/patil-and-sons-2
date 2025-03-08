@@ -12,18 +12,32 @@ import { useEffect, useState } from "react";
 import AddPropertyForm from "@/components/AddPropertyForm";
 import { PropertyCard } from "@/components/PropertyCard";
 import axios from "axios";
-import type { Property } from "@/types/property";
 
+interface PropertyInterface {
+  id: string;
+  title: string;
+  location: string;
+  area: string;
+  description: string;
+  price: string;
+  type: string;
+  images: { url: string }[];
+  videos: { url: string }[];
+}
+
+interface ApiResponse {
+  allProperties: PropertyInterface[];
+}
 export default function Properties() {
   const data = useAuth();
   const [showAddForm, setShowAddForm] = useState(false);
-  const [allproperties, setAllProperties] = useState<Property[]>([]);
+  const [allproperties, setAllProperties] = useState<PropertyInterface[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const response: any = await axios.get("/api/properties");
+        const response = await axios.get<ApiResponse>("/api/properties");
         setAllProperties(response.data.allProperties);
         setLoading(false)
       } catch (error) {

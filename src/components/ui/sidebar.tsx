@@ -5,11 +5,11 @@ import { PanelLeft } from "lucide-react"
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import { cn } from "@/lib/utils"
-// import { Button } from "@/components/ui/button"
+import { Button as ButtonComponent, type ButtonProps } from "./button"
 
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 
-const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.default), { ssr: false });
+// const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.default), { ssr: false });
 
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
@@ -264,13 +264,13 @@ const Sidebar = React.forwardRef<
 Sidebar.displayName = "Sidebar"
 
 const SidebarTrigger = React.forwardRef<
-  React.ElementRef<typeof Button>,
-  React.ComponentProps<typeof Button>
+  HTMLButtonElement,
+  ButtonProps
 >(({ className, onClick, ...props }, ref) => {
   const { toggleSidebar } = useSidebar()
 
   return (
-    <Button
+    <ButtonComponent
       ref={ref}
       data-sidebar="trigger"
       variant="ghost"
@@ -284,7 +284,7 @@ const SidebarTrigger = React.forwardRef<
     >
       <PanelLeft />
       <span className="sr-only">Toggle Sidebar</span>
-    </Button>
+    </ButtonComponent>
   )
 })
 SidebarTrigger.displayName = "SidebarTrigger"

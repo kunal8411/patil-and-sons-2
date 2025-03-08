@@ -1,5 +1,6 @@
 // import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
+import Image from 'next/image';
 
 const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.default), { ssr: false });
 
@@ -19,10 +20,13 @@ export default function Contact() {
           <CardContent className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <img
-                  src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85"
-                  alt="Our Team"
-                  className="rounded-lg"
+                <Image 
+                  src="/contact-image.jpg" 
+                  alt="Contact" 
+                  width={500} 
+                  height={300}
+                  className="rounded-lg shadow-md"
+                  style={{ objectFit: 'cover' }}
                 />
               </div>
               <div className="space-y-6">

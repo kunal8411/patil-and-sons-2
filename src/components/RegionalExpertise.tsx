@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
+import Image from 'next/image';
 
 export default function RegionalExpertise() {
   const regions = [
@@ -26,10 +27,13 @@ export default function RegionalExpertise() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {regions.map((region, index) => (
             <Card key={index} className="overflow-hidden">
-              <img
+              <Image
                 src={region.image}
                 alt={region.name}
-                className="h-48 w-full object-cover"
+                width={400}
+                height={300}
+                className="w-full h-48 object-cover rounded-lg"
+                style={{ objectFit: 'cover' }}
               />
               <CardContent className="p-6">
                 <h3 className="text-xl font-semibold mb-2">{region.name}</h3>

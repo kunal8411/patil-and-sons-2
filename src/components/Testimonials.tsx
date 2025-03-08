@@ -1,6 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { useQuery } from "@tanstack/react-query";
-import type { Testimonial } from "@/types/testimonial";
+
 
 export default function Testimonials() {
   const testimonials = [

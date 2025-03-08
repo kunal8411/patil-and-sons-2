@@ -3,9 +3,21 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Ruler } from "lucide-react";
 import { PropertyDetailsModal } from "./PropertyDetailsModal";
+import Image from 'next/image';
+
+interface Property {
+  title: string;
+  location: string;
+  area: string;
+  description: string;
+  price: string;
+  type: string;
+  images: { url: string }[];
+  videos: { url: string }[];
+}
 
 interface PropertyCardProps {
-  property: any;
+  property: Property;
 }
 
 export function PropertyCard({ property }: PropertyCardProps) {
@@ -19,10 +31,13 @@ export function PropertyCard({ property }: PropertyCardProps) {
       >
         <div className="aspect-video w-full overflow-hidden rounded-t-lg">
           {property.images.length > 0 ? (
-            <img
+            <Image
               src={property.images[0]?.url}
               alt={property.title}
-              className="w-full h-full object-cover"
+              width={400}
+              height={250}
+              className="w-full h-48 object-cover rounded-t-lg"
+              style={{ objectFit: 'cover' }}
             />
           ) : property.videos.length > 0 ? (
             <video

@@ -2,10 +2,7 @@ import * as React from "react"
 import { ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-// import { ButtonProps, buttonVariants } from "@/components/ui/button"
-import dynamic from "next/dynamic";
-
-const Button = dynamic(() => import("@/components/ui/button").then((mod) => mod.default), { ssr: false });
+import { ButtonProps, buttonVariants } from "./button"
 
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (

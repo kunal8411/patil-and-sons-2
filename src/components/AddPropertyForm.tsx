@@ -15,6 +15,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
 import { InsertProperty, insertPropertySchema } from "@/shared/schema";
+import Image from 'next/image';
 
 interface AddPropertyFormProps {
   onClose: () => void;
@@ -124,20 +125,17 @@ export default function AddPropertyForm({ onClose }: AddPropertyFormProps) {
 
       const { title, description, area, price, type, location } = data;
       try {
-        const data = await axios.post(
-        "/api/properties",
-          {
-            title,
-            description,
-            area,
-            price,
-            type,
-            location,
-            images: uploadedImages,
-            videos: uploadedVideos,
-          }
-        );
-        
+        const data = await axios.post("/api/properties", {
+          title,
+          description,
+          area,
+          price,
+          type,
+          location,
+          images: uploadedImages,
+          videos: uploadedVideos,
+        });
+        console.log("data", data);
 
         toast({
           title: "Success",
@@ -145,11 +143,11 @@ export default function AddPropertyForm({ onClose }: AddPropertyFormProps) {
         });
         setShowScroller(false);
         onClose();
-      } catch (error: any) {
+      } catch (error: unknown) {
         toast({
           title: "Error",
           description:
-            error && error?.message ? error.message : "Something went wrong",
+            error instanceof Error ? error.message : "Something went wrong",
           variant: "destructive",
         });
       } finally {
@@ -267,10 +265,13 @@ export default function AddPropertyForm({ onClose }: AddPropertyFormProps) {
                 <div className="grid grid-cols-4 gap-4 mt-2">
                   {images.map((file, index) => (
                     <div key={`image-${index}`} className="relative group">
-                      <img
-                        src={URL.createObjectURL(file)}
-                        alt={`Preview ${index}`}
+                      <Image 
+                        src={URL.createObjectURL(file)} 
+                        alt={`Preview ${index}`} 
+                        width={200} 
+                        height={150} 
                         className="w-full h-24 object-cover rounded-lg"
+                        style={{ objectFit: 'cover' }}
                       />
                       <button
                         type="button"

@@ -1,4 +1,3 @@
-// /lib/dbConnect.js
 import mongoose from "mongoose";
 
 const MONGODB_URI =
@@ -6,11 +5,11 @@ const MONGODB_URI =
 
 async function dbConnect() {
   try {
-    const opts = {};
     mongoose.set('strictQuery', true);
 
     await mongoose.connect(MONGODB_URI);
     const db = mongoose.connection;
+    console.log("db",db)
   } catch (error) {
     console.log("Error connecting with Mongodb", error)
   }

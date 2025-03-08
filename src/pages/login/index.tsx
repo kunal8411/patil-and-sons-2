@@ -23,6 +23,7 @@ const loginSchema = z.object({
 
 type LoginFormData = z.infer<typeof loginSchema>;
 
+
 export default function Login() {
   const { isAdmin } = useAuth();
   const router = useRouter();
@@ -44,9 +45,10 @@ export default function Login() {
       setErrorMessage("Invalid Username/Password");
 
       }
-    } catch (error: any) {
-    
-      setErrorMessage(error.message || "Login failed");
+    } catch (error: unknown) {
+      console.error("Login error:", error);
+      const errorMessage = error instanceof Error ? error.message : "An unknown error occurred";
+      setErrorMessage(errorMessage);
     }
   };
 
@@ -55,7 +57,6 @@ export default function Login() {
       router.push("/");
     }
   }, [isAdmin, router]);
-  console.log("errorMessageerrorMessageerrorMessage",errorMessage)
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 px-4">
       <motion.div

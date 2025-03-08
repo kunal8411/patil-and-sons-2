@@ -7,8 +7,7 @@ const Button = dynamic(
   { ssr: false }
 );
 
-import { Phone, LogIn, LogOut } from "lucide-react";
-import { useAuth } from "@/hooks/use-auth";
+import { Phone } from "lucide-react";
 import Image from "next/image";
 
 export default function Navigation() {
