@@ -43,10 +43,10 @@ export default function AddPropertyForm({ onClose }: AddPropertyFormProps) {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["/api/properties"] });
-      toast({
-        title: "Success",
-        description: "Property added successfully",
-      });
+      // toast({
+      //   title: "Success",
+      //   description: "Property added successfully",
+      // });
       onClose();
     },
     onError: (error: Error) => {
@@ -137,10 +137,10 @@ export default function AddPropertyForm({ onClose }: AddPropertyFormProps) {
         });
         console.log("data", data);
 
-        toast({
-          title: "Success",
-          description: "Property added successfully",
-        });
+        // toast({
+        //   title: "Success",
+        //   description: "Property added successfully",
+        // });
         setShowScroller(false);
         onClose();
       } catch (error: unknown) {

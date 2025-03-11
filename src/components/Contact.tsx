@@ -21,7 +21,7 @@ export default function Contact() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <Image 
-                  src="/contact-image.jpg" 
+                  src="/getintouch.jpeg" 
                   alt="Contact" 
                   width={500} 
                   height={300}

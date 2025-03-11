@@ -58,7 +58,7 @@ export function PropertyDetailsModal({ isOpen, onClose, property }: PropertyDeta
                   alt={property.title}
                   width={600}
                   height={400}
-                  className="w-full h-64 object-cover rounded-t-lg"
+                  className="w-full h-full object-cover rounded-t-lg"
                   style={{ objectFit: 'cover' }}
                 />
               ) : (

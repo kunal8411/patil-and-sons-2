@@ -38,6 +38,7 @@ export default function Properties() {
       try {
         setLoading(true)
         const response = await axios.get<ApiResponse>("/api/properties");
+        console.log("response",response)
         setAllProperties(response.data.allProperties);
         setLoading(false)
       } catch (error) {
@@ -49,7 +50,24 @@ export default function Properties() {
 
     fetchData();
   }, []); // Empty dependency array runs the effect once on mount
-
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        setLoading(true)
+        const response = await axios.get<ApiResponse>("/api/properties");
+        console.log("response",response)
+        setAllProperties(response.data.allProperties);
+        setLoading(false)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }finally{
+        setLoading(false)
+      }
+    };
+    if(!showAddForm){
+      fetchData();
+    }
+  },[showAddForm])
   console.log("allproperties", allproperties);
   if (loading) {
     return (

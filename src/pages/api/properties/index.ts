@@ -10,8 +10,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     case "GET":
       try {
         await dbConnect();
-        const allProperties = await Properties.find();
-        res.status(200).json({ success: true, data: allProperties });
+        const allProperties = await Properties.find().sort({ createdAt: -1 });
+        res.status(200).json({ success: true, allProperties: allProperties });
       } catch (error) {
         const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
         res.status(400).json({ success: false, error: errorMessage });
@@ -22,7 +22,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
         await dbConnect();
         const newProperty = new Properties(req.body);
         const savedProperty = await newProperty.save();
-        res.status(201).json({ success: true, data: savedProperty });
+        res.status(201).json({ success: true, allProperties: savedProperty });
       } catch (error: unknown) {
         console.error("Error handling property request:", error);
         const errorMessage = error instanceof Error ? error.message : "Unknown error occurred";
@@ -37,6 +37,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
 interface PropertyResponse {
   success: boolean;
-  data?: unknown;
+  allProperties?: unknown;
   error?: string;
 }

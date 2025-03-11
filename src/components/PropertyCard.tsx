@@ -36,7 +36,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
               alt={property.title}
               width={400}
               height={250}
-              className="w-full h-48 object-cover rounded-t-lg"
+              className="w-full h-full object-cover rounded-t-lg"
               style={{ objectFit: 'cover' }}
             />
           ) : property.videos.length > 0 ? (
