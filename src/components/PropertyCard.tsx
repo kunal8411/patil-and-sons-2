@@ -49,6 +49,10 @@ export function PropertyCard({ property }: PropertyCardProps) {
             <video
               src={property.videos[0]?.url}
               className="w-full h-full object-cover"
+              controls
+              playsInline
+              preload="metadata"
+              poster="/property-video-thumb.png" 
             />
           ) : (
             <div className="w-full h-full bg-gray-200 flex items-center justify-center">

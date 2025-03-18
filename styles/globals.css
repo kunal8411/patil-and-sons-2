@@ -9,4 +9,11 @@
   backface-visibility: hidden;
   perspective: 1000;
   -webkit-perspective: 1000;
+}
+
+video {
+  max-width: 100%;
+  height: auto;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 } 

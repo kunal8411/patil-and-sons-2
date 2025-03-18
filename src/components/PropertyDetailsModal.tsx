@@ -66,6 +66,9 @@ export function PropertyDetailsModal({ isOpen, onClose, property }: PropertyDeta
                   src={allMedia[currentImageIndex].url}
                   controls
                   className="w-full h-full object-cover"
+                  playsInline
+                  preload="metadata"
+                  poster="/property-video-thumb.png"
                 />
               )}
               
