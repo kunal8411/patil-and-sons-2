@@ -129,10 +129,10 @@ export function PropertyDetailsModal({ isOpen, onClose, property }: PropertyDeta
 
         {/* Property Details */}
         <div className="mt-4 space-y-2">
-          <p className="text-lg font-semibold">₹{property.price}</p>
+          <p className="text-lg font-semibold text-gray-600">₹{property.price}</p>
           <p className="text-gray-600">{property?.location}</p>
           <p className="text-gray-600">{property.area} sq ft</p>
-          <p className="mt-2">{property.description}</p>
+          <p className="mt-2 text-gray-600">{property.description}</p>
         </div>
       </DialogContent>
     </Dialog>
