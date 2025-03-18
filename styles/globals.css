@@ -4,6 +4,16 @@
   text-rendering: optimizeLegibility;
 }
 
+h1, h2, h3, h4, h5, h6, p, span, div {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.font-playfair, .font-semibold {
+  letter-spacing: -0.01em;
+  text-shadow: 0 0 1px transparent;
+}
+
 .property-text {
   transform: none; /* Prevent transform-related blur */
   backface-visibility: hidden;

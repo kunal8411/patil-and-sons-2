@@ -117,6 +117,10 @@ export function PropertyDetailsModal({ isOpen, onClose, property }: PropertyDeta
                 <video
                   src={media.url}
                   className="w-full h-full object-cover"
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster="/property-video-thumb.png"
                 />
               )}
             </button>
