@@ -34,9 +34,15 @@ export function PropertyCard({ property }: PropertyCardProps) {
             <Image
               src={property.images[0]?.url}
               alt={property.title}
+              loading="lazy"
               width={400}
               height={250}
-              className="w-full h-full object-cover rounded-t-lg"
+              className="w-full h-[250px] object-cover rounded-t-lg"
+              quality={75}
+              onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
+                const target = e.target as HTMLImageElement;
+                target.src = '/fallback-image.jpg';
+              }}
               style={{ objectFit: 'cover' }}
             />
           ) : property.videos.length > 0 ? (
