@@ -38,7 +38,7 @@ export default function Testimonials() {
               <CardContent className="p-6">
                 <p className="text-gray-600 mb-4">{testimonial.content}</p>
                 <div>
-                  <p className="font-semiboldtext-gray-600">{testimonial.name}</p>
+                  <p className="font-semibold text-gray-600">{testimonial.name}</p>
                   <p className="text-sm text-gray-500">
                     {testimonial.location}
                   </p>

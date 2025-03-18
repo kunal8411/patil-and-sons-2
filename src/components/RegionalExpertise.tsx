@@ -15,7 +15,7 @@ export default function RegionalExpertise() {
     },
     {
       name: "Dindori",
-      image: "https://imagecdn.99acres.com/media1/27600/2/552002841M-1736231641369.jpg",
+      image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/10/22/36/8c/lovely-vies-from-the.jpg?w=600&h=400&s=1",
       description: "Investment opportunities in growing regions"
     }
   ];

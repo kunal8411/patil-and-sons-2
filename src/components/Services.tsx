@@ -33,7 +33,7 @@ export default function Services() {
           {services.map((service, index) => (
             <Card key={index} className="text-center">
               <CardContent className="pt-6">
-                <div className="flex justify-center mb-4 text-primary">
+                <div className="flex justify-center mb-4 text-primary text-gray-600">
                   {service.icon}
                 </div>
                 <h3 className="text-xl font-semibold mb-2 text-gray-600">{service.title}</h3>
